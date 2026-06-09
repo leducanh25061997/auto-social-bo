@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Font mặc định: Be Vietnam Pro (self-host, hỗ trợ tiếng Việt đầy đủ).
+ * Chỉ ship các weight UI cần (400/500/600/700/800). `swap` để không chặn render.
+ */
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/be-vietnam-pro/BeVietnamPro-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/fonts/be-vietnam-pro/BeVietnamPro-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./assets/fonts/be-vietnam-pro/BeVietnamPro-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/fonts/be-vietnam-pro/BeVietnamPro-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('./assets/fonts/be-vietnam-pro/BeVietnamPro-ExtraBold.ttf') format('truetype');
+}
+
+/*
+ * Design tokens cho Shadcn UI (baseColor: slate).
+ * Mọi màu khai báo bằng HSL channel để Tailwind opacity modifier hoạt động.
+ */
+@layer base {
+  /*
+   * Design system "Clean, Bright & Modern".
+   * - Nền trang slate-50 (sáng, thoáng) để các thẻ trắng (--card) nổi khối.
+   * - Primary = blue-600 (tươi, tin cậy); ring & accent đồng bộ tone xanh.
+   * - Text dùng slate-900 (KHÔNG đen tuyền) cho tiêu đề, slate-500 cho phụ.
+   */
+  :root {
+    --background: 214 32% 94%; /* xám slate nhẹ (giữa slate-100/200) — nền canvas tối hơn để thẻ trắng nổi khối */
+    --foreground: 222.2 47.4% 11.2%; /* slate-900 — không dùng đen tuyền */
+    --card: 0 0% 100%; /* white — thẻ/bảng/khu vực nội dung */
+    --card-foreground: 222.2 47.4% 11.2%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+    --primary: 221.2 83.2% 53.3%; /* blue-600 — màu chủ đạo */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96.1%; /* slate-100 */
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%; /* slate-500 — văn bản phụ */
+    --accent: 214 100% 96.9%; /* blue-50 — hover/active nhẹ, on-brand */
+    --accent-foreground: 221.2 83.2% 53.3%; /* blue-600 */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214.3 31.8% 91.4%; /* slate-200 — viền mỏng, nhạt */
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%; /* blue-600 — focus đồng bộ primary */
+    --radius: 0.625rem; /* bo góc mềm mại */
+  }
+
+  .dark {
+    --background: 222.2 47.4% 11.2%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 44% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 44% 14%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%; /* blue-500 — sáng hơn trên nền tối */
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 33% 24%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 20%;
+    --input: 217.2 32.6% 20%;
+    --ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Thanh cuộn tinh tế, đồng bộ design token (mượt & gọn). */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-border;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/40;
+  }
+
+  /* Tôn trọng người dùng tắt hiệu ứng chuyển động (accessibility). */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

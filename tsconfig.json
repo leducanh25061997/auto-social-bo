@@ -1,0 +1,14 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    // Bỏ `baseUrl` (deprecated từ TS 6/7): với moduleResolution "Bundler",
+    // `paths` được phân giải tương đối theo vị trí tsconfig này.
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
