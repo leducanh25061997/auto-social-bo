@@ -56,9 +56,20 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled || loading}
         {...props}
       >
-        {/* Khi asChild, con phải là 1 element duy nhất → không chèn spinner. */}
-        {loading && !asChild && <Loader2 className="size-4 animate-spin" />}
-        {children}
+        {/*
+          QUAN TRỌNG: khi asChild, Radix Slot yêu cầu ĐÚNG 1 React element con.
+          Phải truyền THẲNG `children` — không bọc Fragment, không render biểu thức
+          phụ (kể cả `false`), nếu không Slot nhận >1 child và ném lỗi
+          "Expected a single React element child". Spinner chỉ chèn ở nút thường.
+        */}
+        {asChild ? (
+          children
+        ) : (
+          <>
+            {loading && <Loader2 className="size-4 animate-spin" />}
+            {children}
+          </>
+        )}
       </Comp>
     )
   },

@@ -28,10 +28,10 @@ export const facebookPageSchema = z.object({
 
 export type FacebookPage = z.infer<typeof facebookPageSchema>
 
-/** Tham số lọc/phân trang (khớp query backend). */
+/** Tham số lọc/phân trang (khớp query backend). `limit` bỏ trống -> lấy hết. */
 export interface FacebookAccountListParams {
   page: number
-  limit: number
+  limit?: number
   search?: string
   status?: 'active' | 'inactive' | 'all'
 }

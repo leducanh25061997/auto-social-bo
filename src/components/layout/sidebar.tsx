@@ -1,11 +1,12 @@
 import { memo, useMemo } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Bot } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 import { NAV_ITEMS } from '@/config/navigation'
 import { useUiStore } from '@/stores/ui-store'
 import { useAuth } from '@/features/auth/hooks/use-auth'
+import logoFull from '@/assets/brand/logo-full.png'
+import logoMark from '@/assets/brand/logo-mark.png'
 
 /**
  * Sidebar điều hướng chính.
@@ -27,15 +28,25 @@ export const Sidebar = memo(function Sidebar() {
         collapsed ? 'md:w-16' : 'md:w-60',
       )}
     >
-      <div className="flex h-14 items-center gap-2.5 border-b border-slate-100 px-4">
-        {/* Logo trong ô gradient — điểm nhấn thương hiệu. */}
-        <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 text-white shadow-sm shadow-blue-500/30">
-          <Bot className="size-5" />
-        </div>
-        {!collapsed && (
-          <span className="truncate text-sm font-semibold text-slate-900">
-            Auto Social Bot
-          </span>
+      <div
+        className={cn(
+          'flex h-14 items-center border-b border-slate-100',
+          collapsed ? 'justify-center px-2' : 'px-4',
+        )}
+      >
+        {/* Logo thương hiệu — thu gọn: chỉ icon; mở rộng: logo đầy đủ. */}
+        {collapsed ? (
+          <img
+            src={logoMark}
+            alt="Auto Social Bot"
+            className="size-9 shrink-0 rounded-lg shadow-sm shadow-blue-500/30"
+          />
+        ) : (
+          <img
+            src={logoFull}
+            alt="Auto Social Bot"
+            className="h-9 w-auto select-none"
+          />
         )}
       </div>
 

@@ -136,10 +136,10 @@ export function DataTable<T>({
 
   return (
     <div className={cn('space-y-3', className)}>
-      <div className="overflow-hidden rounded-xl border border-slate-200 bg-card shadow-sm">
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-card shadow-md">
         <Table>
           <TableHeader>
-            <TableRow className="border-slate-100 bg-slate-50/80 hover:bg-slate-50/80">
+            <TableRow className="border-slate-200 bg-slate-100 hover:bg-slate-100">
               {columns.map((col) => (
                 <TableHead
                   key={col.id}

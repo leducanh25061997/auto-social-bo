@@ -9,10 +9,14 @@ export const FACEBOOK_APP_ID = import.meta.env.VITE_FACEBOOK_APP_ID ?? ''
 export const FACEBOOK_GRAPH_VERSION = 'v23.0'
 
 /**
- * Quyền yêu cầu — tối thiểu để lấy hồ sơ + xem danh sách Page.
- * (Không xin quyền đăng bài để giữ phạm vi gọn, dễ được Facebook chấp thuận.)
+ * Quyền yêu cầu — đủ để lấy hồ sơ, xem danh sách Page, ĐĂNG BÀI và COMMENT lên Page.
+ * - `pages_show_list`: liệt kê Page + lấy page access token (qua /me/accounts).
+ * - `pages_manage_posts`: đăng / lên lịch bài lên Page (bắt buộc để đăng).
+ * - `pages_manage_engagement`: đăng comment dưới bài thay mặt Page (cho tính năng
+ *   comment đầu tiên tự động).
  */
-export const FACEBOOK_SCOPES = 'public_profile,pages_show_list,pages_read_engagement'
+export const FACEBOOK_SCOPES =
+  'public_profile,pages_show_list,pages_manage_posts,pages_manage_engagement'
 
 /** Đường dẫn trang callback nhận `code` từ Facebook (route công khai). */
 export const FACEBOOK_REDIRECT_PATH = '/oauth/facebook/callback'

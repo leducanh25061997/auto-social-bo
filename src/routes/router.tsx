@@ -26,6 +26,12 @@ const FacebookConnectPage = lazy(
 const FacebookOAuthCallback = lazy(
   () => import('@/features/facebook-accounts/components/facebook-oauth-callback'),
 )
+const FacebookPostsPage = lazy(
+  () => import('@/features/facebook-posts/components/facebook-posts-page'),
+)
+const FacebookPostComposerPage = lazy(
+  () => import('@/features/facebook-posts/components/facebook-post-composer-page'),
+)
 const InstagramAccountsPage = lazy(
   () => import('@/features/instagram-accounts/components/instagram-accounts-page'),
 )
@@ -84,6 +90,9 @@ export const router = createBrowserRouter([
           { path: 'accounts', element: <AccountsPage /> },
           { path: 'facebook-accounts', element: <FacebookAccountsPage /> },
           { path: 'facebook-accounts/connect', element: <FacebookConnectPage /> },
+          { path: 'facebook-posts', element: <FacebookPostsPage /> },
+          { path: 'facebook-posts/create', element: <FacebookPostComposerPage /> },
+          { path: 'facebook-posts/:id/edit', element: <FacebookPostComposerPage /> },
           { path: 'instagram-accounts', element: <InstagramAccountsPage /> },
           { path: 'instagram-accounts/connect', element: <InstagramConnectPage /> },
           { path: 'profile', element: <ProfilePage /> },

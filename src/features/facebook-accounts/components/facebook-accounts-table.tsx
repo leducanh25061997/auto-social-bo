@@ -103,7 +103,7 @@ export const FacebookAccountsTable = ({
       {
         id: 'actions',
         header: 'Hành động',
-        headerClassName: 'w-[60px] text-right',
+        headerClassName: 'w-[80px] whitespace-nowrap text-right',
         className: 'text-right',
         cell: (a) => (
           <DropdownMenu>
